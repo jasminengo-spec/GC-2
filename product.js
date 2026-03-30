@@ -15,5 +15,44 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('product-image').alt = window.productData.title;
     document.getElementById('product-description').textContent = window.productData.description;
     document.getElementById('product-price').textContent = window.productData.price;
-    // Add to cart button logic can be added here
+    // Add to cart button logic
+    const addToCartBtn = document.getElementById('add-to-cart');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function() {
+            // Retrieve cart from localStorage or initialize
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Get selected size/variation if present
+            let selectedOption = '';
+            let selectedQty = 1;
+            // Try to find a select element and quantity input in the product container
+            const container = document.querySelector('.product-container');
+            if (container) {
+                const select = container.querySelector('select');
+                if (select) {
+                    selectedOption = select.options[select.selectedIndex].text;
+                }
+                const qtyInput = container.querySelector('input[type="number"]');
+                if (qtyInput && !isNaN(parseInt(qtyInput.value))) {
+                    selectedQty = parseInt(qtyInput.value);
+                }
+            }
+            // Check if product already in cart (by title, selected option, and quantity)
+            const exists = cart.some(item => item.title === window.productData.title && item.option === selectedOption);
+            if (!exists) {
+                // Add product to cart
+                cart.push({
+                    title: window.productData.title,
+                    image: window.productData.image,
+                    price: window.productData.price,
+                    description: window.productData.description,
+                    option: selectedOption,
+                    quantity: selectedQty
+                });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Product added to cart!');
+            } else {
+                alert('This product is already in your cart.');
+            }
+        });
+    }
 });

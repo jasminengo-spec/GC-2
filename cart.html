@@ -14,11 +14,51 @@
         </nav>
     </header>
         <h2>Your Cart</h2>
-        <p>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</p>
+        
 
             <!-- Cart items will go here -->
               <!-- im ngl i dont understand this -->
             <div id="cart-items"></div>
+
+        <script>
+        // Display cart items from localStorage
+        function renderCartItems() {
+            const cartContainer = document.getElementById('cart-items');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</p>';
+                return;
+            }
+            let html = '<ul style="list-style:none;padding:0;">';
+            cart.forEach((item, idx) => {
+                html += `
+                <li style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
+                    <img src="${item.image}" alt="${item.title}" style="width:100px;vertical-align:middle;margin-right:10px;">
+                    <strong>${item.title}</strong><br>
+                    <span>${item.price}</span><br>
+                    <span>${item.description}</span><br>
+                    <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
+                    <span><strong>Quantity:</strong> ${item.quantity ? item.quantity : 1}</span><br>
+                    <button class="remove-from-cart" data-idx="${idx}">Remove</button>
+                </li>
+                `;
+            });
+            html += '</ul>';
+            cartContainer.innerHTML = html;
+            // Add event listeners for remove buttons
+            const removeButtons = cartContainer.querySelectorAll('.remove-from-cart');
+            removeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart.splice(idx, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartItems();
+                });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', renderCartItems);
+        </script>
 
             <br>
 
@@ -26,7 +66,7 @@
             <br><br>
             <a href="checkout.html">Proceed to Checkout</a>
 
-            <script src="cart.js"></script>
+            <script src="product.js"></script>
 
 </body>
 
