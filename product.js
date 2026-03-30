@@ -21,15 +21,26 @@ document.addEventListener('DOMContentLoaded', function() {
         addToCartBtn.addEventListener('click', function() {
             // Retrieve cart from localStorage or initialize
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // Check if product already in cart (by title)
-            const exists = cart.some(item => item.title === window.productData.title);
+            // Get selected size/variation if present
+            let selectedOption = '';
+            // Try to find a select element in the product container
+            const container = document.querySelector('.product-container');
+            if (container) {
+                const select = container.querySelector('select');
+                if (select) {
+                    selectedOption = select.options[select.selectedIndex].text;
+                }
+            }
+            // Check if product already in cart (by title and selected option)
+            const exists = cart.some(item => item.title === window.productData.title && item.option === selectedOption);
             if (!exists) {
                 // Add product to cart
                 cart.push({
                     title: window.productData.title,
                     image: window.productData.image,
                     price: window.productData.price,
-                    description: window.productData.description
+                    description: window.productData.description,
+                    option: selectedOption
                 });
                 localStorage.setItem('cart', JSON.stringify(cart));
                 alert('Product added to cart!');

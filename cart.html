@@ -30,18 +30,31 @@
                 return;
             }
             let html = '<ul style="list-style:none;padding:0;">';
-            cart.forEach(item => {
+            cart.forEach((item, idx) => {
                 html += `
                 <li style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
                     <img src="${item.image}" alt="${item.title}" style="width:100px;vertical-align:middle;margin-right:10px;">
                     <strong>${item.title}</strong><br>
                     <span>${item.price}</span><br>
-                    <span>${item.description}</span>
+                    <span>${item.description}</span><br>
+                    <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
+                    <button class="remove-from-cart" data-idx="${idx}">Remove</button>
                 </li>
                 `;
             });
             html += '</ul>';
             cartContainer.innerHTML = html;
+            // Add event listeners for remove buttons
+            const removeButtons = cartContainer.querySelectorAll('.remove-from-cart');
+            removeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart.splice(idx, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartItems();
+                });
+            });
         }
         document.addEventListener('DOMContentLoaded', renderCartItems);
         </script>
