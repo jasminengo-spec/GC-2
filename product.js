@@ -23,15 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             // Get selected size/variation if present
             let selectedOption = '';
-            // Try to find a select element in the product container
+            let selectedQty = 1;
+            // Try to find a select element and quantity input in the product container
             const container = document.querySelector('.product-container');
             if (container) {
                 const select = container.querySelector('select');
                 if (select) {
                     selectedOption = select.options[select.selectedIndex].text;
                 }
+                const qtyInput = container.querySelector('input[type="number"]');
+                if (qtyInput && !isNaN(parseInt(qtyInput.value))) {
+                    selectedQty = parseInt(qtyInput.value);
+                }
             }
-            // Check if product already in cart (by title and selected option)
+            // Check if product already in cart (by title, selected option, and quantity)
             const exists = cart.some(item => item.title === window.productData.title && item.option === selectedOption);
             if (!exists) {
                 // Add product to cart
@@ -40,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     image: window.productData.image,
                     price: window.productData.price,
                     description: window.productData.description,
-                    option: selectedOption
+                    option: selectedOption,
+                    quantity: selectedQty
                 });
                 localStorage.setItem('cart', JSON.stringify(cart));
                 alert('Product added to cart!');

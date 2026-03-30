@@ -38,6 +38,7 @@
                     <span>${item.price}</span><br>
                     <span>${item.description}</span><br>
                     <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
+                    <span><strong>Quantity:</strong> ${item.quantity ? item.quantity : 1}</span><br>
                     <button class="remove-from-cart" data-idx="${idx}">Remove</button>
                 </li>
                 `;
