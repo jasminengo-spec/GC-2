@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>3D Jewelry - Triforma PH</title>
+    </head>
+    <body>
+    <header>
+        <nav>
+            <a href=index.html>Home</a> |
+            <a href=catalogue.html>Products</a> |
+            <a href=cart.html>Cart</a> |
+            <a href=checkout.html>Checkout</a>
+        </nav>
+    </header>
+        <div class = "product-info">
+            <button class="back"><a href=catalogue.html>Back to Catalogue</a></button>
+            <h2>Jewelry</h2>
+            <p>1500 PHP</p>
+            <article class = "sample-imgs">
+                <img class = "p_details-img" src = "product images/J/jewelry_1.jpg" alt ="Sample Image 1" width = 400px>
+                <img class = "p_details-img" src = "product images/J/jewelry_2.jpg" alt ="Sample Image 2" width = 400px>
+                <img class = "p_details-img" src = "product images/J/jewelry_3.jpg" alt ="Sample Image 3" width = 400px>
+            </article>
+
+            <section class = "add-to-cart">
+                    <form id = "add-to-cart-form">
+                        
+                        <input type="hidden" name="product" value="jewelry">
+
+                        <!-- Variation Dropdown -->
+                         <div>
+                        <label for="variation">Choose Variation:</label>
+                        <select name="variation" id="j_variation">
+                            <option value="Earrings">Earrings</option>
+                            <option value="Necklace">Necklace</option>
+                            <option value="Bracelet">Bracelet</option>
+                            <option value="Ring">Ring</option>
+                        </select>
+                         </div>
+
+                        <!-- Quantity -->
+                         <div>
+                        <label for="qty">Quantity:</label>
+                        <input type="number" name="quantity" id="j_qty" value="1" min="1">
+                        </div>
+
+                        <!-- File upload -->
+                         <div>
+                        <label for="design">Upload your 3D design:</label>
+                        <input type="file" id="j_design" name="design">
+                        </div>
+
+                        <!-- Submit -->
+                        <div>
+                        <button type="submit">Add to Cart</button>
+                        </div>
+                     </form>
+                </section>
+            <p>Custom 3D printed jewelry designed with your preferred style, name, or pattern. Lightweight and unique, perfect for personal use or as a meaningful gift.</p>
+        </div>
+    </body>
+<footer>
+    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+    <p> Contact us through 3dprintADMU@xmail.com</p>
+    <p>&copy; 2026 3D Print Shop</p>
+  <nav>
+    <a href=index.html>Home</a> |
+    <a href=catalogue.html>Products</a> |
+    <a href=cart.html>Cart</a> |
+    <a href=checkout.html>Checkout</a>
+</html>

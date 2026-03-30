@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>3D Pet Tags - Triforma PH</title>
+    </head>
+    <body>
+    <header>
+        <nav>
+            <a href=index.html>Home</a> |
+            <a href=catalogue.html>Products</a> |
+            <a href=cart.html>Cart</a> |
+            <a href=checkout.html>Checkout</a>
+        </nav>
+    </header>
+        <div class = "product-info">
+            <button class="back"><a href=catalogue.html>Back to Catalogue</a></button>
+            <h2>Pet Tags</h2>
+            <p>1200 PHP</p>
+            <article class = "sample-imgs">
+                    <img class = "p_details-img" src = "product images/PT/pt_1.jpg" alt ="Sample Image 1" width = 400px>
+                    <img class = "p_details-img" src = "product images/PT/pt_2.jpg" alt ="Sample Image 2" width = 400px>
+                    <img class = "p_details-img" src = "product images/PT/pt_3.jpg" alt ="Sample Image 3" width = 400px>
+            </article>
+
+            <section class = "add-to-cart">
+                    <form id = "add-to-cart-form">
+                        
+                        <input type="hidden" name="product" value="pet tag">
+
+                        <!-- Variation Dropdown -->
+                         <div>
+                        <label for="size">Choose Size:</label>
+                        <select name="size" id="pt_size">
+                            <option value="small">Small (1.5 inches)</option>
+                            <option value="medium">Medium (2 inches)</option>
+                            <option value="large">Large (2.5 inches)</option>
+                        </select>
+                         </div>
+                         
+                        <!-- Color -->
+                         <div>
+                        <label for="color">Choose Color:</label>
+                        <select name="color" id="pt_color">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>   
+                            <option value="pink">Pink</option>  
+                        </select>
+                        </div>
+
+                        <!-- Quantity -->
+                         <div>
+                        <label for="qty">Quantity:</label>
+                        <input type="number" name="quantity" id="pt_qty" value="1" min="1">
+                        </div>
+
+                        <!-- File upload -->
+                         <div>
+                        <label for="text">Text Input:</label>
+                        <input type="text" id="pt_text" name="text" placeholder="Enter pet's name and contact info">
+                        </div>
+
+                        <!-- Submit -->
+                        <div>
+                        <button type="submit">Add to Cart</button>
+                        </div>
+                     </form>
+                </section>
+            <p>A durable and lightweight pet tag personalized with your pet’s name and contact information for safety and identification.</p>
+        </div>
+    </body>
+<footer>
+    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+    <p> Contact us through 3dprintADMU@xmail.com</p>
+    <p>&copy; 2026 3D Print Shop</p>
+  <nav>
+    <a href=index.html>Home</a> |
+    <a href=catalogue.html>Products</a> |
+    <a href=cart.html>Cart</a> |
+    <a href=checkout.html>Checkout</a>
+</html>

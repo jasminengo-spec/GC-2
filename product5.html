@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Custom 3D Print - Triforma PH</title>
+    </head>
+    <body>
+    <header>
+        <nav>
+            <a href=index.html>Home</a> |
+            <a href=catalogue.html>Products</a> |
+            <a href=cart.html>Cart</a> |
+            <a href=checkout.html>Checkout</a>
+        </nav>
+    </header>
+        <div class = "product-info">
+            <button class="back"><a href=catalogue.html>Back to Catalogue</a></button>
+            <h2>Label Accessory</h2>
+            <p>850 PHP</p>
+                <article class = "sample-imgs">
+                    <img class = "p_details-img" src = "product images/L/label_1.jpg" alt ="Sample Image 1">
+                    <img class = "p_details-img" src = "product images/L/label_2.jpg" alt ="Sample Image 2">
+                    <img class = "p_details-img" src = "product images/L/label_3.jpg" alt ="Sample Image 3">
+                </article>
+            <caption>Sample Images</caption>
+            <p>This custom label accessory is designed to help organize cords and stationery items efficiently. It can be attached to cables or cylindrical objects such as containers and tubes for easy identification. The design is lightweight, durable, and customizable, making it suitable for both home and workspace organization.</p>
+        </div>
+
+        <section class = "add-to-cart">
+                    <form id = "add-to-cart-form">
+                        
+                        <input type="hidden" name="product" value="label accessory">
+
+                        <!-- Variation Dropdown -->
+                         <div>
+                        <label for="size">Choose Size:</label>
+                        <select name="size" id="l_size">
+                            <option value="small">Small (2 inches)</option>
+                            <option value="medium">Medium (2.5 inches)</option>
+                            <option value="large">Large (3 inches)</option>
+                        </select>
+                         </div>
+                         
+                        <!-- Color -->
+                         <div>
+                        <label for="color">Choose Color:</label>
+                        <select name = "color" id="l_color">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>   
+                            <option value="pink">Pink</option>  
+                        </select>
+                        </div>
+
+                        <!-- Quantity -->
+                         <div>
+                        <label for="qty">Quantity:</label>
+                        <input type="number" name="quantity" id="l_qty" value="1" min="1">
+                        </div>
+
+                        <!-- File upload -->
+                         <div>
+                        <label for="text">Text Input:</label>
+                        <input type="text" id="l_text" name="text" placeholder="Enter label text">
+                        </div>
+
+                        <!-- Submit -->
+                        <div>
+                        <button type="submit">Add to Cart</button>
+                        </div>
+                     </form>
+                </section>
+    </body>
+<footer>
+    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+    <p> Contact us through 3dprintADMU@xmail.com</p>
+    <p>&copy; 2026 3D Print Shop</p>
+  <nav>
+    <a href=index.html>Home</a> |
+    <a href=catalogue.html>Products</a> |
+    <a href=cart.html>Cart</a> |
+    <a href=checkout.html>Checkout</a>
+</html>
