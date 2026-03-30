@@ -1,42 +1,42 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF-8">
-        <title>3D Pet Tags - Triforma PH</title>
-    </head>
-    <body>
-    <header>
-        <nav>
-            <a href=index.html>Home</a> |
-            <a href=catalogue.html>Products</a> |
-            <a href=cart.html>Cart</a> |
-            <a href=checkout.html>Checkout</a>
-        </nav>
-    </header>
-        <div class = "product-info">
-            <button class="back"><a href=catalogue.html>Back to Catalogue</a></button>
-            <h2>Pet Tags</h2>
-            <p>1200 PHP</p>
-            <article class = "sample-imgs">
-                    <img class = "p_details-img" src = "product images/PT/pt_1.jpg" alt ="Sample Image 1" width = 400px>
-                    <img class = "p_details-img" src = "product images/PT/pt_2.jpg" alt ="Sample Image 2" width = 400px>
-                    <img class = "p_details-img" src = "product images/PT/pt_3.jpg" alt ="Sample Image 3" width = 400px>
-            </article>
-
-            <section class = "add-to-cart">
-                    <form id = "add-to-cart-form">
-                        
-                        <input type="hidden" name="product" value="pet tag">
-
-                        <!-- Variation Dropdown -->
-                         <div>
-                        <label for="size">Choose Size:</label>
-                        <select name="size" id="pt_size">
-                            <option value="small">Small (1.5 inches)</option>
-                            <option value="medium">Medium (2 inches)</option>
-                            <option value="large">Large (2.5 inches)</option>
-                        </select>
-                         </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-title">Pet Tags - Triforma PH</title>
+    <link rel="stylesheet" href="styles.css"><!-- Optional: your CSS file -->
+</head>
+<body>
+    <div class="product-container">
+        <h1 id="product-name">Pet Tags</h1>
+        <img id="product-image" src="product images/PT/pt_1.jpg" alt="Pet Tags" style="max-width:300px;">
+        <p id="product-description">Durable 3D printed pet tags. Available in multiple sizes.</p>
+        <div class="product-price" id="product-price">1200 PHP</div>
+        <label for="size">Choose Size:</label>
+        <select name="size" id="pt_size">
+            <option value="small">Small (1.5 inches)</option>
+            <option value="medium">Medium (2 inches)</option>
+            <option value="large">Large (2.5 inches)</option>
+        </select>
+        <button id="add-to-cart">Add to Cart</button>
+        <div style="margin-top:20px;">
+            <img class="p_details-img" src="product images/PT/pt_1.jpg" alt="Sample Image 1" width="200px">
+            <img class="p_details-img" src="product images/PT/pt_2.jpg" alt="Sample Image 2" width="200px">
+            <img class="p_details-img" src="product images/PT/pt_3.jpg" alt="Sample Image 3" width="200px">
+        </div>
+        <div style="margin-top:20px;">
+            <a href="catalogue.html">Back to Catalogue</a>
+        </div>
+    </div>
+    <script>
+    window.productData = {
+        title: "3D Pet Tags - Triforma PH",
+        image: "product images/PT/pt_1.jpg",
+        description: "Durable 3D printed pet tags. Available in multiple sizes.",
+        price: "1200 PHP"
+    };
+    </script>
+    <script src="product.js"></script>
                          
                         <!-- Color -->
                          <div>
