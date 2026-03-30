@@ -23,40 +23,55 @@
         <script>
         // Display cart items from localStorage
         function renderCartItems() {
-            const cartContainer = document.getElementById('cart-items');
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                cartContainer.innerHTML = '<p>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</p>';
-                return;
-            }
-            let html = '<ul style="list-style:none;padding:0;">';
-            cart.forEach((item, idx) => {
-                html += `
-                <li style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
-                    <img src="${item.image}" alt="${item.title}" style="width:100px;vertical-align:middle;margin-right:10px;">
-                    <strong>${item.title}</strong><br>
-                    <span>${item.price}</span><br>
-                    <span>${item.description}</span><br>
-                    <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
-                    <span><strong>Quantity:</strong> ${item.quantity ? item.quantity : 1}</span><br>
-                    <button class="remove-from-cart" data-idx="${idx}">Remove</button>
-                </li>
-                `;
-            });
-            html += '</ul>';
-            cartContainer.innerHTML = html;
-            // Add event listeners for remove buttons
-            const removeButtons = cartContainer.querySelectorAll('.remove-from-cart');
-            removeButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const idx = parseInt(this.getAttribute('data-idx'));
-                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    cart.splice(idx, 1);
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    renderCartItems();
+                const cartContainer = document.getElementById('cart-items');
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart.length === 0) {
+                    cartContainer.innerHTML = '<p>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</p>';
+                    return;
+                }
+                let html = '<ul style="list-style:none;padding:0;">';
+                let totalFinalPrice = 0;
+                cart.forEach((item, idx) => {
+                    // Calculate/display final price
+                    let finalPrice = item.finalPrice;
+                    if (typeof finalPrice === 'undefined') {
+                        // fallback if not present
+                        finalPrice = (parseFloat(item.price) * (item.quantity ? item.quantity : 1)).toFixed(2);
+                    }
+                    totalFinalPrice += parseFloat(finalPrice);
+                    html += `
+                    <li style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
+                        <img src="${item.image}" alt="${item.title}" style="width:100px;vertical-align:middle;margin-right:10px;">
+                        <strong>${item.title}</strong><br>
+                        <span>${item.price}</span><br>
+                        <span>${item.description}</span><br>
+                        <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
+                        <span><strong>Quantity:</strong> ${item.quantity ? item.quantity : 1}</span><br>
+                        <span><strong>Final Price:</strong> ₱${finalPrice}</span><br>
+                        <button class="remove-from-cart" data-idx="${idx}">Remove</button>
+                    </li>
+                    `;
                 });
-            });
-        }
+                html += '</ul>';
+                html += `<div style="margin-top:20px;font-size:1.2em;"><strong>Total Final Price: ₱${totalFinalPrice.toFixed(2)}</strong></div>`;
+                // Loyalty points: totalFinalPrice divided by 1,000, rounded up to nearest whole number.
+                const loyaltyPoints = Math.ceil(totalFinalPrice / 1000);
+                html += `<div style="margin-top:10px;font-size:1.1em;"><strong>Loyalty Points Earned: ${loyaltyPoints}</strong></div>`;
+                cartContainer.innerHTML = html;
+
+                
+                // Add event listeners for remove buttons
+                const removeButtons = cartContainer.querySelectorAll('.remove-from-cart');
+                removeButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.getAttribute('data-idx'));
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        cart.splice(idx, 1);
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        renderCartItems();
+                    });
+                });
+            }
         document.addEventListener('DOMContentLoaded', renderCartItems);
         </script>
 

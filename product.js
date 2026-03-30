@@ -4,6 +4,11 @@
 // Example usage: Each product page sets window.productData before loading this script.
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Calculates the final price by multiplying price and quantity
+    function finalPrice(price, quantity) {
+        // Ensure price is a number (in case it's a string)
+        return parseFloat(price) * parseInt(quantity);
+    }
     if (!window.productData) {
         console.error('No productData found!');
         return;
@@ -47,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     description: window.productData.description,
                     option: selectedOption,
                     quantity: selectedQty
+                        ,finalPrice: finalPrice(window.productData.price, selectedQty)
                 });
                 localStorage.setItem('cart', JSON.stringify(cart));
                 alert('Product added to cart!');
