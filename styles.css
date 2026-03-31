@@ -24,30 +24,102 @@ body {
   color: var(--text);
 }
 
-/* HEADER */
-.site-header {
+/* HEADER AND FOOTER */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   background: var(--brand);
   color: white;
+  padding: 5px;
 }
 
-.logo {
+.triforma-logo {
   font-weight: 700;
+  margin-left: 20px;
 }
 
-.nav__link {
-  margin-left: 1rem;
+nav{
+  margin-right:30px;
+  display: flex;
+  gap: 20px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--brand);
+  color: white;
+  padding: 30px;
+}
+
+/* LEFT SIDE - catchline + nav */
+.catchline {
+  display: flex;
+  flex-direction: column;   
+  gap: 20px;                
+  flex: 1;
+}
+
+.catchline p {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-footer {
+  display: flex;
+  flex-direction: row;      
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+/* RIGHT SIDE - address */
+.find-us {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;                 
+  flex: 1;
+  align-items: flex-end;   
+}
+
+.find-us p {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-align: right;
+}
+
+nav a {
   text-decoration: none;
   color: white;
-  opacity: 0.8;
+  font-size: 16px;
+  opacity:0.5;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
-.nav__link--active,
-.nav__link:hover {
+nav a:hover {
   opacity: 1;
+}
+
+nav a.active {
+  opacity: 1;
+}
+
+/* INDEX */
+#start-here{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 20px;
+}
+
+#start-here p{
+  gap: 10px;
 }
 
 /* CONTAINER */
@@ -122,16 +194,6 @@ body {
 .btn:hover {
   background: #483a73; /* darker purple */
   transform: translateY(-1px);
-}
-
-/* FOOTER */
-.site-footer {
-  margin-top: 3rem;
-  padding: 1rem;
-  background: var(--brand);
-  color: white;
-  display: flex;
-  justify-content: space-between;
 }
 
 /* RESPONSIVE */

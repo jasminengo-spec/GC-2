@@ -3,32 +3,40 @@
     <head>
         <meta charset="UTF-8">
         <title>Triforma PH</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     
     <body>
         <header>
-            <h3>Triforma</h3>
-                <nav>
-                    <a href=index.html><span class="active">Home</span></a> |
-                    <a href=catalogue.html>Products</a> |
-                    <a href=cart.html>Cart</a> |
+            <h3 class="triforma-logo">Triforma</h3>
+                <nav class="nav-header">
+                    <a class="active" href=index.html>Home</a>
+                    <a href=catalogue.html>Products</a>
+                    <a href=cart.html>Cart</a>
                     <a href=checkout.html>Checkout</a>
                 </nav>
+        </header>
+        <section id="start-here">
             <h1>Looking for something special?</h1>
             <p>Browse our 3D print catalogue and personalize something for a loved one today.</p>
-        </header>
-        <a href="catalogue.html"><button id="product-start">Get started here.</button></a>
+            <a href="catalogue.html"><button id="product-start">Get started here.</button></a>
+        </section>
 </body>
 
 <footer>
-    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
-    <p> Contact us through 3dprintADMU@xmail.com</p>
-    <p>&copy; 2026 3D Print Shop</p>
-  <nav>
-    <a href=index.html><span class="active">Home</span></a> |
-    <a href=catalogue.html>Products</a> |
-    <a href=cart.html>Cart</a> |
-    <a href=checkout.html>Checkout</a>
-  </nav>
+    <section class="catchline">
+        <p>Your one and only <br>3D printing solution <br>in ADMU!</p>
+        <nav class="nav-footer">
+            <a class="active" href=index.html>Home</a>
+            <a href=catalogue.html>Products</a>
+            <a href=cart.html>Cart</a>
+            <a href=checkout.html>Checkout</a>
+        </nav>
+    </section>
+    <section class="find-us">
+        <p>Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+        <p>Contact us through 3dprintADMU@xmail.com</p>
+        <p>&copy;2026 Triforma PH</p>
+    </section>
 </footer>
 </html>
