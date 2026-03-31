@@ -16,7 +16,7 @@
                 </nav>
         </header>
         <section class="page-title">
-            <h2>Your Cart</h2>
+            <h1>Your Cart</h1>
             <!-- Cart items will go here -->
               <!-- im ngl i dont understand this -->
             <div id="cart-items"></div>
@@ -28,7 +28,7 @@
                 const cartContainer = document.getElementById('cart-items');
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
                 if (cart.length === 0) {
-                    cartContainer.innerHTML = '<p>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</p>';
+                    cartContainer.innerHTML = '<h3>Your cart is currently empty. Browse our catalogue to add some amazing 3D printed products!</h3>';
                     return;
                 }
                 let html = '<ul style="list-style:none;padding:0;">';
