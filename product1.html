@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="product-title">Keychain - Triforma PH</title>
-    <link rel="stylesheet" href="styles.css"><!-- Optional: your CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="product-container">
@@ -13,27 +13,42 @@
         <img id="product-image" src="product images/KC/keychain_1.jpg" alt="Keychain" style="max-width:300px;">
         <p id="product-description">A stylish 3D printed keychain. Available in multiple sizes.</p>
         <div class="product-price" id="product-price">800 PHP</div>
-        <label for="size">Choose Size:</label>
+        <label for="kc_size">Choose Size:</label>
         <select name="size" id="kc_size">
             <option value="small">Small (2x3 inches)</option>
             <option value="medium">Medium (3x4 inches)</option>
             <option value="large">Large (4x5 inches)</option>
         </select>
+
         <div>
-            <label for="qty">Quantity:</label>
+            <label for="mf_qty">Quantity:</label>
+            <button type="button" id="decrease-qty">-</button>
             <input type="number" name="quantity" id="mf_qty" value="1" min="1">
+            <button type="button" id="increase-qty">+</button>
+            <p id="quantity-error" hidden>Quantity must be 1 or more.</p>
         </div>
 
-        <button id="add-to-cart">Add to Cart</button>
-        <div style="margin-top:20px;">
-            <img class="p_details-img" src="product images/KC/keychain_1.jpg" alt="Sample Image 1" width="200px">
-            <img class="p_details-img" src="product images/KC/keychain_2.jpg" alt="Sample Image 2" width="200px">
-            <img class="p_details-img" src="product images/KC/keychain_3.jpg" alt="Sample Image 3" width="200px">
+        <!-- File upload -->
+        <div>
+            <label for="kc_design">Upload your 3D design:</label>
+            <input type="file" id="kc_design" name="design">
         </div>
+
+        <p>A personalized 3D printed keychain customized with your name, initials, or logo. Perfect for everyday use or as a small gift.</p>
+
+        <button id="add-to-cart">Add to Cart</button>
+
+        <div style="margin-top:20px;">
+            <img class="p_details-img" src="product images/KC/keychain_1.jpg" alt="Sample Image 1" width="200">
+            <img class="p_details-img" src="product images/KC/keychain_2.jpg" alt="Sample Image 2" width="200">
+            <img class="p_details-img" src="product images/KC/keychain_3.jpg" alt="Sample Image 3" width="200">
+        </div>
+
         <div style="margin-top:20px;">
             <a href="catalogue.html">Back to Catalogue</a>
         </div>
     </div>
+
     <script>
     window.productData = {
         title: "3D Keychain - Triforma PH",
@@ -42,31 +57,65 @@
         price: "800 PHP"
     };
     </script>
+
     <script src="product.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const qtyInput = document.getElementById('mf_qty');
+        const decreaseBtn = document.getElementById('decrease-qty');
+        const increaseBtn = document.getElementById('increase-qty');
+        const addToCartBtn = document.getElementById('add-to-cart');
+        const errorMessage = document.getElementById('quantity-error');
+
+        function validateQuantity() {
+            const qty = parseInt(qtyInput.value, 10);
+
+            if (isNaN(qty) || qty < 1) {
+                errorMessage.hidden = false;
+                return false;
+            }
+
+            errorMessage.hidden = true;
+            return true;
+        }
+
+        decreaseBtn.addEventListener('click', function () {
+            const currentQty = parseInt(qtyInput.value, 10) || 1;
+            if (currentQty > 1) {
+                qtyInput.value = currentQty - 1;
+            }
+            validateQuantity();
+        });
+
+        increaseBtn.addEventListener('click', function () {
+            const currentQty = parseInt(qtyInput.value, 10) || 1;
+            qtyInput.value = currentQty + 1;
+            validateQuantity();
+        });
+
+        qtyInput.addEventListener('input', validateQuantity);
+
+        addToCartBtn.addEventListener('click', function (event) {
+            if (!validateQuantity()) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                alert('Quantity must be 1 or more.');
+            }
+        }, true);
+    });
+    </script>
+
+    <footer>
+        <p>Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+        <p>Contact us through 3dprintADMU@xmail.com</p>
+        <p>&copy; 2026 3D Print Shop</p>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="catalogue.html">Products</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html">Checkout</a>
+        </nav>
+    </footer>
 </body>
-</html>
-
-                        <!-- File upload -->
-                         <div>
-                        <label for="design">Upload your 3D design:</label>
-                        <input type="file" id="kc_design" name="design">
-                        </div>
-                     </form>
-                </section>
-                <p>A personalized 3D printed keychain customized with your name, initials, or logo. Perfect for everyday use or as a small gift.</p>
-        </div>
-    </body>
-
-<footer>
-    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
-    <p> Contact us through 3dprintADMU@xmail.com</p>
-    <p>&copy; 2026 3D Print Shop</p>
-  <nav>
-    <a href=index.html>Home</a> |
-    <a href=catalogue.html>Products</a> |
-    <a href=cart.html>Cart</a> |
-    <a href=checkout.html>Checkout</a>
-  </nav>
-</footer>
-
 </html>

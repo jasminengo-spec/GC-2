@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- <! I'm using this as my guinea pig for the product templates> -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-title">Keychain - Triforma PH</title>
+    <link rel="stylesheet" href="styles.css"><!-- Optional: your CSS file -->
+</head>
+<body>
+    <div class="product-container">
+        <h1 id="product-name">Keychain</h1>
+        <img id="product-image" src="product images/KC/keychain_1.jpg" alt="Keychain" style="max-width:300px;">
+        <p id="product-description">A stylish 3D printed keychain. Available in multiple sizes.</p>
+        <div class="product-price" id="product-price">800 PHP</div>
+        <label for="size">Choose Size:</label>
+        <select name="size" id="kc_size">
+            <option value="small">Small (2x3 inches)</option>
+            <option value="medium">Medium (3x4 inches)</option>
+            <option value="large">Large (4x5 inches)</option>
+        </select>
+        <div>
+            <label for="qty">Quantity:</label>
+            <input type="number" name="quantity" id="mf_qty" value="1" min="1">
+        </div>
+
+        <button id="add-to-cart">Add to Cart</button>
+        <div style="margin-top:20px;">
+            <img class="p_details-img" src="product images/KC/keychain_1.jpg" alt="Sample Image 1" width="200px">
+            <img class="p_details-img" src="product images/KC/keychain_2.jpg" alt="Sample Image 2" width="200px">
+            <img class="p_details-img" src="product images/KC/keychain_3.jpg" alt="Sample Image 3" width="200px">
+        </div>
+        <div style="margin-top:20px;">
+            <a href="catalogue.html">Back to Catalogue</a>
+        </div>
+    </div>
+    <script>
+    window.productData = {
+        title: "3D Keychain - Triforma PH",
+        image: "product images/KC/keychain_1.jpg",
+        description: "A stylish 3D printed keychain. Available in multiple sizes.",
+        price: "800 PHP"
+    };
+    </script>
+    <script src="product.js"></script>
+</body>
+</html>
+
+                        <!-- File upload -->
+                         <div>
+                        <label for="design">Upload your 3D design:</label>
+                        <input type="file" id="kc_design" name="design">
+                        </div>
+                     </form>
+                </section>
+                <p>A personalized 3D printed keychain customized with your name, initials, or logo. Perfect for everyday use or as a small gift.</p>
+        </div>
+    </body>
+
+<footer>
+    <p> Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+    <p> Contact us through 3dprintADMU@xmail.com</p>
+    <p>&copy; 2026 3D Print Shop</p>
+  <nav>
+    <a href=index.html>Home</a> |
+    <a href=catalogue.html>Products</a> |
+    <a href=cart.html>Cart</a> |
+    <a href=checkout.html>Checkout</a>
+  </nav>
+</footer>
+
+</html>

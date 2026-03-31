@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Triforma PH</title>
+</head>
+<body>
+    <header>
+        <h3>Triforma</h3>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="catalogue.html">Products</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html"><span class="active">Checkout</span></a>
+        </nav>
+        <h1>Checkout</h1>
+        <p>Review your order and complete your purchase.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Order Summary</h2>
+            <div id="checkout-items"></div>
+        </section>
+
+        <section>
+            <h2>Customer Information</h2>
+            <form id="checkout-form">
+                <fieldset>
+                    <legend>Personal Details</legend>
+
+                    <label for="full-name">Full Name:</label><br>
+                    <input type="text" id="full-name" name="full-name" required><br><br>
+
+                    <label for="email">Email Address:</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+
+                    <label for="phone">Phone Number:</label><br>
+                    <input type="tel" id="phone" name="phone" required><br><br>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Delivery Details</legend>
+
+                    <label for="delivery-method">Delivery Method:</label><br>
+                    <select id="delivery-method" name="delivery-method" required>
+                        <option value="">Select an option</option>
+                        <option value="Store Pickup">Store Pickup</option>
+                        <option value="Home Delivery">Home Delivery</option>
+                    </select><br><br>
+
+                    <label for="address">Delivery Address:</label><br>
+                    <textarea id="address" name="address" rows="4" cols="40" placeholder="Enter your complete address"></textarea><br><br>
+
+                    <label for="notes">Order Notes:</label><br>
+                    <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Add any instructions for your order"></textarea>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Payment Method</legend>
+
+                    <input type="radio" id="gcash" name="payment-method" value="GCash" required>
+                    <label for="gcash">GCash</label><br>
+
+                    <input type="radio" id="card" name="payment-method" value="Credit/Debit Card">
+                    <label for="card">Credit/Debit Card</label><br>
+
+                    <input type="radio" id="cod" name="payment-method" value="Cash on Delivery">
+                    <label for="cod">Cash on Delivery</label>
+                </fieldset>
+
+                <br>
+
+                <section>
+                    <h2>Final Checkout Details</h2>
+                    <p><strong>Total Items:</strong> <span id="total-items">0</span></p>
+                    <p><strong>Total Final Price:</strong> ₱<span id="total-price">0.00</span></p>
+                    <p><strong>Loyalty Points Earned:</strong> <span id="loyalty-points">0</span></p>
+                </section>
+
+                <button type="submit" id="place-order">Place Order</button>
+            </form>
+        </section>
+
+        <aside>
+            <h2>Need to change something?</h2>
+            <p><a href="cart.html">Go back to Cart</a></p>
+            <p><a href="catalogue.html">Continue Shopping</a></p>
+        </aside>
+
+        <section id="confirmation-message"></section>
+    </main>
+
+    <footer>
+        <p>Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+        <p>Contact us through 3dprintADMU@xmail.com</p>
+        <p>&copy; 2026 3D Print Shop</p>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="catalogue.html">Products</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html"><span class="active">Checkout</span></a>
+        </nav>
+    </footer>
+
+    <script>
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+
+        function getNumericPrice(value) {
+            if (typeof value === 'number') {
+                return value;
+            }
+            return parseFloat(String(value).replace(/[^\d.]/g, '')) || 0;
+        }
+
+        function renderCheckoutItems() {
+            const checkoutContainer = document.getElementById('checkout-items');
+            const totalItemsElement = document.getElementById('total-items');
+            const totalPriceElement = document.getElementById('total-price');
+            const loyaltyPointsElement = document.getElementById('loyalty-points');
+            const placeOrderButton = document.getElementById('place-order');
+            const cart = getCart();
+
+            if (cart.length === 0) {
+                checkoutContainer.innerHTML = '<p>Your cart is currently empty. Please add products before proceeding to checkout.</p>';
+                totalItemsElement.textContent = '0';
+                totalPriceElement.textContent = '0.00';
+                loyaltyPointsElement.textContent = '0';
+                placeOrderButton.disabled = true;
+                return;
+            }
+
+            let html = '<ul>';
+            let totalFinalPrice = 0;
+            let totalItems = 0;
+
+            cart.forEach((item) => {
+                const quantity = item.quantity ? parseInt(item.quantity) : 1;
+                let finalPrice = item.finalPrice;
+
+                if (typeof finalPrice === 'undefined') {
+                    finalPrice = getNumericPrice(item.price) * quantity;
+                }
+
+                finalPrice = getNumericPrice(finalPrice);
+                totalFinalPrice += finalPrice;
+                totalItems += quantity;
+
+                html += `
+                    <li>
+                        <article>
+                            <img src="${item.image}" alt="${item.title}" width="120">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <p><strong>Base Price:</strong> ${item.price}</p>
+                            <p><strong>Selected Option:</strong> ${item.option ? item.option : 'Standard'}</p>
+                            <p><strong>Quantity:</strong> ${quantity}</p>
+                            <p><strong>Final Price:</strong> ₱${finalPrice.toFixed(2)}</p>
+                        </article>
+                    </li>
+                `;
+            });
+
+            html += '</ul>';
+            checkoutContainer.innerHTML = html;
+
+            totalItemsElement.textContent = totalItems;
+            totalPriceElement.textContent = totalFinalPrice.toFixed(2);
+            loyaltyPointsElement.textContent = Math.ceil(totalFinalPrice / 1000);
+            placeOrderButton.disabled = false;
+        }
+
+        function handleDeliveryMethod() {
+            const deliveryMethod = document.getElementById('delivery-method');
+            const addressField = document.getElementById('address');
+
+            function updateAddressRequirement() {
+                if (deliveryMethod.value === 'Home Delivery') {
+                    addressField.required = true;
+                    addressField.placeholder = 'Enter your complete delivery address';
+                } else {
+                    addressField.required = false;
+                    addressField.placeholder = 'Address not required for store pickup';
+                }
+            }
+
+            deliveryMethod.addEventListener('change', updateAddressRequirement);
+            updateAddressRequirement();
+        }
+
+        function generateOrderNumber() {
+            return 'TRI-' + Date.now();
+        }
+
+        function handleCheckoutSubmit() {
+            const form = document.getElementById('checkout-form');
+            const confirmationMessage = document.getElementById('confirmation-message');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const cart = getCart();
+                if (cart.length === 0) {
+                    alert('Your cart is empty. Please add items before checking out.');
+                    return;
+                }
+
+                const fullName = document.getElementById('full-name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const deliveryMethod = document.getElementById('delivery-method').value;
+                const address = document.getElementById('address').value.trim();
+                const notes = document.getElementById('notes').value.trim();
+                const paymentMethodInput = document.querySelector('input[name="payment-method"]:checked');
+                const totalPrice = document.getElementById('total-price').textContent;
+                const loyaltyPoints = document.getElementById('loyalty-points').textContent;
+
+                if (!paymentMethodInput) {
+                    alert('Please select a payment method.');
+                    return;
+                }
+
+                if (deliveryMethod === 'Home Delivery' && address === '') {
+                    alert('Please enter your delivery address for home delivery.');
+                    return;
+                }
+
+                const orderData = {
+                    orderNumber: generateOrderNumber(),
+                    customerName: fullName,
+                    email: email,
+                    phone: phone,
+                    deliveryMethod: deliveryMethod,
+                    address: address,
+                    notes: notes,
+                    paymentMethod: paymentMethodInput.value,
+                    totalPrice: totalPrice,
+                    loyaltyPoints: loyaltyPoints,
+                    items: cart,
+                    orderDate: new Date().toLocaleString()
+                };
+
+                localStorage.setItem('lastOrder', JSON.stringify(orderData));
+                localStorage.removeItem('cart');
+
+                confirmationMessage.innerHTML = `
+                    <h2>Order Confirmed</h2>
+                    <p>Thank you for your purchase, <strong>${orderData.customerName}</strong>.</p>
+                    <p><strong>Order Number:</strong> ${orderData.orderNumber}</p>
+                    <p><strong>Email:</strong> ${orderData.email}</p>
+                    <p><strong>Phone:</strong> ${orderData.phone}</p>
+                    <p><strong>Delivery Method:</strong> ${orderData.deliveryMethod}</p>
+                    <p><strong>Payment Method:</strong> ${orderData.paymentMethod}</p>
+                    <p><strong>Total Paid:</strong> ₱${orderData.totalPrice}</p>
+                    <p><strong>Loyalty Points Earned:</strong> ${orderData.loyaltyPoints}</p>
+                    <p>Your order has been saved in localStorage as <strong>lastOrder</strong>.</p>
+                    <p><a href="catalogue.html">Shop Again</a></p>
+                `;
+
+                form.reset();
+                renderCheckoutItems();
+                handleDeliveryMethod();
+                alert('Thank you for your purchase! Your transaction has been confirmed.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCheckoutItems();
+            handleDeliveryMethod();
+            handleCheckoutSubmit();
+        });
+    </script>
+</body>
+</html>
