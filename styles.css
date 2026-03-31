@@ -33,17 +33,20 @@ header {
   background: var(--brand);
   color: white;
   padding: 5px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .triforma-logo {
   font-weight: 700;
   margin-left: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 nav{
   margin-right:30px;
   display: flex;
   gap: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 footer {
@@ -53,6 +56,7 @@ footer {
   background: var(--brand);
   color: white;
   padding: 30px;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* LEFT SIDE - catchline + nav */
@@ -117,6 +121,7 @@ nav a.active {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .page-title h1 {
@@ -125,18 +130,19 @@ nav a.active {
 
 .page-title h3 {
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #product-start{
   background-color: var(--accent1);
   border: none;
-  border-radius: 10px;
+  border-radius: 1rem;
   padding: 15px 15px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   color: white; 
+  font-family: 'Roboto', sans-serif;
 }
 
 #product-start:hover{
@@ -385,4 +391,187 @@ nav a.active {
 
 .back-btn:hover {
   color: var(--accent);
+}
+
+/* CHECKOUT */
+main{
+  font-family: 'Roboto', sans-serif;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.order-summary h2{
+  margin-top: 0px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top:0px;
+  padding-bottom: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+main h2{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* ORDER SUMMARY */
+.order-summary {
+  flex: 1 1 300px;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-summary article {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 0.75rem;
+  background: var(--bg);
+}
+
+.order-summary img {
+  border-radius: 0.5rem;
+  width: 120px;
+}
+
+/* CUSTOMER INFORMATION */
+.customer-information {
+  flex: 1 1 300px;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.75rem;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+}
+
+legend {
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 0.5rem;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* FINAL CHECKOUT DETAILS */
+.customer-information section {
+  background: var(--bg);
+  border-radius: 0.75rem;
+  padding: 20px 20px;
+  margin-top: 10px;
+}
+
+/* PLACE ORDER BUTTON */
+#place-order {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: var(--accent1);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#place-order:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+}
+
+#place-order:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ASIDE */
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 0 1 100px;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+.aside-links {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.aside-links a {
+  padding: 10px 20px;
+  background: var(--accent1);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.aside-links a:hover {
+  background: var(--accent2);
+}
+
+/* CONFIRMATION MESSAGE */
+#confirmation-message {
+  width: 100%;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+#confirmation-message:empty {
+  display: none;   /* hides it when there's no content */
 }
